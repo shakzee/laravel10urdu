@@ -35,3 +35,5 @@ Route::prefix('admin')->group(function(){
 });
 
 Route::resource('admin2',AdminController2::class);
+
+Route::resource('user',UserController::class);
