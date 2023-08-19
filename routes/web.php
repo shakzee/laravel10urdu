@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminController2;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +30,8 @@ Route::get('/admin',[UserController::class,'index'])->name('admin.index');
 
 
 Route::prefix('admin')->group(function(){
-    Route::get('/home',[UserController::class,'myadmin']);
-    Route::get('/about',[UserController::class,'myadmin']);
-    Route::get('/contact',[UserController::class,'myadmin']);
+    Route::get('/home',[AdminController::class,'index']);
+    Route::post('/form',[AdminController::class,'form']);
 });
+
+Route::resource('admin2',AdminController2::class);
