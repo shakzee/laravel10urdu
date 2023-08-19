@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/user/{id}', function ($id) {
+   //echo ' route working..'.$id;
+     return view('welcome',compact('id'));
+});
+
+
+Route::get('/admin',[UserController::class,'index'])->name('admin.index');
+
+// Route::controller(UserController::class)->group(function(){
+//     Route::get('myadmin/','myadmin');
+// });
+
+
+Route::prefix('admin')->group(function(){
+    Route::get('/home',[UserController::class,'myadmin']);
+    Route::get('/about',[UserController::class,'myadmin']);
+    Route::get('/contact',[UserController::class,'myadmin']);
 });
